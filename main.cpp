@@ -16,30 +16,70 @@ int main()
     */
     srand((unsigned int)time(NULL));
     menu();
-    int player = getplayerChoice();
-    int npc = getComputerChoice();
-    // determining the winner
-    if (player == npc)
-    {
-        cout << "---------------------" << endl;
-        cout << " its a draw go again" << endl;
-        cout << "---------------------" << endl;
-    }
+    int player;
+    int npc;
+    int playerScore = 0;
+    int npcScore = 0;
 
-    else if ((player == ROCK && npc == SCISSORS) || (player == PAPER && npc == ROCK) ||
-             (player == SCISSORS && npc == PAPER))
+    /*
+    making the game 5 rounds
+    and checking for a winner.
+    */
+    for (int rounds = 1; rounds <= 5; rounds++)
+    {
+        player = getplayerChoice();
+        npc = getComputerChoice();
+        cout << "computer choose >> " << npc << endl;
+        if (player == npc)
+        {
+            cout << "---------------------" << endl;
+            cout << " its a draw go again" << endl;
+            cout << "---------------------" << endl;
+        }
 
-    {
-        cout << "---------------------" << endl;
-        cout << "player wins Congrats" << endl;
-        cout << "---------------------" << endl;
+        else if ((player == ROCK && npc == SCISSORS) || (player == PAPER && npc == ROCK) ||
+                 (player == SCISSORS && npc == PAPER))
+
+        {
+            cout << "---------------------" << endl;
+            cout << "player wins Congrats" << endl;
+            cout << "---------------------" << endl;
+            playerScore++;
+            cout << "current Player Score is >> " << playerScore << endl;
+            cout << "current Computer Score is >> " << npcScore << endl;
+        }
+        else if ((npc == ROCK && player == SCISSORS) || (npc == PAPER && npc == ROCK) ||
+                 (npc == SCISSORS && player == PAPER))
+        {
+            cout << "---------------------" << endl;
+            cout << "you lose try again" << endl;
+            cout << "---------------------" << endl;
+            npcScore++;
+            cout << "current Player Score is >> " << playerScore << endl;
+            cout << "current Computer Score is >> " << npcScore << endl;
+        }
     }
-    else if ((npc == ROCK && player == SCISSORS) || (npc == PAPER && npc == ROCK) ||
-             (npc == SCISSORS && player == PAPER))
+    /*
+    Displaying The Final Score
+    */
+
+    if (playerScore > npcScore)
     {
-        cout << "---------------------" << endl;
-        cout << "you lose try again" << endl;
-        cout << "---------------------" << endl;
+
+        cout << "Player Wins :> \n";
+        cout << "...............\n";
+    }
+    else if (npcScore > playerScore)
+    {
+
+        cout << "You lose Try Again :<\n";
+        cout << ".....................\n";
+    }
+    else
+    {
+
+        cout << "Its A Tie" << endl;
+        cout << "................\n";
     }
 
     return 0;
@@ -56,6 +96,8 @@ For displaying player options
 */
 void menu()
 {
+    cout << "In 5 Rounds See Who Wins\n";
+    cout << "---------------------------" << endl;
     cout << "Rock, paper, scissors \n";
     cout << "choose between the following " << endl;
     cout << " [1] Rock " << endl;
